@@ -8,9 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(path = "/template")
 public class TemplateController {
 
-    @GetMapping("/fragment")
+    @GetMapping(path = "/fragment")
     public String fragment() {
         return "template/fragment/fragmentMain";
+    }
+
+    @GetMapping(path = "/layout")
+    public String layout() {
+        return "template/layout/layoutMain";
     }
 
 }
