@@ -1,4 +1,8 @@
 package com.tangerine.thymeleaf.basic;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,8 +50,27 @@ public class BaseController {
         return "basic/variable";
     }
 
+    @GetMapping(path = "/basic-objects")
+    public String basicObject(Model model, HttpSession session,
+            HttpServletRequest request, HttpServletResponse response) {
+        session.setAttribute("sessionData", "Hello Session");
+        model.addAttribute("request", request);
+        model.addAttribute("response", response);
+        model.addAttribute("servletContext", request.getServletContext());
+        return "basic/basic-objects";
+    }
+
+    @Component("helloBean")
+    static class HelloBean {
+
+        public String hello(String data) {
+            return "Hello " + data;
+        }
+    }
+
     @Data
     static class User {
+
         private String username;
         private int age;
 
