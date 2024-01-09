@@ -106,6 +106,12 @@ public class BaseController {
         return "basic/each";
     }
 
+    @GetMapping(path = "/condition")
+    public String condition(Model model) {
+        addUsers(model);
+        return "basic/condition";
+    }
+
     private void addUsers(Model model) {
         List<User> list = new ArrayList<>();
         list.add(new User("userA", 10));
